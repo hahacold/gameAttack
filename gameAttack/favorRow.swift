@@ -11,50 +11,55 @@ import Pow
 
 struct favorRow: View {
     let item: GamesItem
-    
+    @State var isAdded = true
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 25)
                 .fill(Color.random)
                 .frame(width: 380, height: 330)
                 .opacity(0.5)
-            
-            VStack{
-                AsyncImage(url: URL(string: item.thumbnail)){ phase in
-                    if let image = phase.image{
-                        image
-                            .resizable()
-                        
-                            .scaledToFit()
-                    } else if phase.error != nil{
-                        Color.gray
-                        
-                    } else{
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .resizable()
-                            .frame(width: 365,height: 206)
-                            .scaledToFit()
-                        
-                        
+            if isAdded {
+                VStack{
+                    AsyncImage(url: URL(string: item.thumbnail)){ phase in
+                        if let image = phase.image{
+                            image
+                                .resizable()
+                            
+                                .scaledToFit()
+                        } else if phase.error != nil{
+                            Color.gray
+                            
+                        } else{
+                            Image(systemName: "arrow.triangle.2.circlepath")
+                                .resizable()
+                                .frame(width: 365,height: 206)
+                                .scaledToFit()
+                            
+                            
+                            
+                        }
                         
                     }
                     
-                }
-                
-                //.frame(width: 460*0.4, height: 215*0.4)
-                .clipShape(RoundedRectangle(cornerRadius: 30))
-                //Spacer()
-                VStack(alignment: .center) {
-                    Text(item.title)
-                    Text(item.platform)
+                    //.frame(width: 460*0.4, height: 215*0.4)
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                    //Spacer()
+                    VStack(alignment: .center) {
+                        Text(item.title)
+                        Text(item.platform)
+                        
+                    }
+                    Text(item.short_description)
+                        .lineLimit(3)
+                        .multilineTextAlignment(.center)
                     
-                }
+                }//.background(Color.gray)
+                .transition(.movingParts.blur)
+            }
+            else{
                 Text(item.short_description)
-                    .lineLimit(3)
                     .multilineTextAlignment(.center)
-                
-            }//.background(Color.gray)
-            .padding()
+            }
             Button(action: {
                 
                 @State var favorList:[Int] = UserDefaults.standard.object(forKey: "favorList") as? [Int] ?? []
@@ -69,12 +74,16 @@ struct favorRow: View {
             }) {
                 Text("❌")
                     .font(.system(size: 36))
-                    
+                
                 
             }.offset(x:130,y: 60)
             
             ShareLink(item: URL(string: item.game_url)!).offset(x:120,y: 90)
             
+        }.onTapGesture {
+            withAnimation {
+                isAdded.toggle()
+            }
         }
         
         

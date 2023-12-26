@@ -83,6 +83,7 @@ struct gameRow: View {
 //                }
                 UserDefaults.standard.set(favorList, forKey: "favorList")
                 print(NSHomeDirectory())
+                print(item.id)
                 
             }) {
                 Text("⭐️")
