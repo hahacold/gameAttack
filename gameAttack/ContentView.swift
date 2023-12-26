@@ -7,7 +7,9 @@
 
 import SwiftUI
 import Pow
+
 struct ContentView: View {
+    
     var body: some View {
         
         TabView{
@@ -17,6 +19,8 @@ struct ContentView: View {
                 }.transition(
                     .movingParts.blinds(slatWidth: 25)
                   )
+            
+
             FavorView()
                 .tabItem {
                     Label("收藏夾", systemImage: "folder")

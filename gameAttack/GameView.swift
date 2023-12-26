@@ -62,7 +62,7 @@ struct GameView: View {
                 else if searchResult.isEmpty{
                     
                     ContentUnavailableView(
-                        "載入中請稍候",
+                        "載入中",
                         systemImage: "arrow.triangle.2.circlepath.icloud.fill",
                         description: Text("請稍候")
                     ).transition(
