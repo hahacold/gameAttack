@@ -66,7 +66,14 @@ struct gameRow: View {
                         .multilineTextAlignment(.center)
                     
                 }.padding()
-                      .transition(.movingParts.blur)
+                    .transition(
+                                .movingParts.boing
+                                .combined(with: .opacity)
+                                .animation(
+                                  .interactiveSpring(dampingFraction: 0.5)
+                                )
+                                )
+                      //.transition(.movingParts.blur)
                   }
             else{
                 Text(item.short_description)
