@@ -69,7 +69,7 @@ struct GameView: View {
                         .movingParts.blinds(slatWidth: 25)
                       )
                 }
-                else  {
+                else  if fetcher.items.isEmpty{
                     
                     ContentUnavailableView(
                         "網路有問題",
