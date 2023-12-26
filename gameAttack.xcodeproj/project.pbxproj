@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522234AD2B320B0600482C58 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522234AC2B320B0600482C58 /* GameView.swift */; };
+		522234AF2B320B3600482C58 /* gameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522234AE2B320B3600482C58 /* gameRow.swift */; };
+		523C60192B320B850018D27D /* gamesDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C60182B320B850018D27D /* gamesDataFetcher.swift */; };
+		52C161FA2B3B595500BAE25D /* FavorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C161F92B3B595500BAE25D /* FavorView.swift */; };
+		52C161FC2B3B631500BAE25D /* favorRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C161FB2B3B631500BAE25D /* favorRow.swift */; };
+		52C161FE2B3B746A00BAE25D /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C161FD2B3B746A00BAE25D /* WebView.swift */; };
+		52C162022B3B794B00BAE25D /* LoaderUI in Frameworks */ = {isa = PBXBuildFile; productRef = 52C162012B3B794B00BAE25D /* LoaderUI */; };
+		52C162052B3B7CA200BAE25D /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 52C162042B3B7CA200BAE25D /* Pow */; };
 		52CC48CB2B320ABB002071EB /* gameAttackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CC48CA2B320ABB002071EB /* gameAttackApp.swift */; };
 		52CC48CD2B320ABB002071EB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CC48CC2B320ABB002071EB /* ContentView.swift */; };
 		52CC48CF2B320ABC002071EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52CC48CE2B320ABC002071EB /* Assets.xcassets */; };
@@ -34,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		522234AC2B320B0600482C58 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		522234AE2B320B3600482C58 /* gameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameRow.swift; sourceTree = "<group>"; };
+		523C60182B320B850018D27D /* gamesDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamesDataFetcher.swift; sourceTree = "<group>"; };
+		52C161F92B3B595500BAE25D /* FavorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorView.swift; sourceTree = "<group>"; };
+		52C161FB2B3B631500BAE25D /* favorRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favorRow.swift; sourceTree = "<group>"; };
+		52C161FD2B3B746A00BAE25D /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		52CC48C72B320ABB002071EB /* gameAttack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gameAttack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CC48CA2B320ABB002071EB /* gameAttackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameAttackApp.swift; sourceTree = "<group>"; };
 		52CC48CC2B320ABB002071EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C162022B3B794B00BAE25D /* LoaderUI in Frameworks */,
+				52C162052B3B7CA200BAE25D /* Pow in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +111,13 @@
 			isa = PBXGroup;
 			children = (
 				52CC48CA2B320ABB002071EB /* gameAttackApp.swift */,
+				523C60182B320B850018D27D /* gamesDataFetcher.swift */,
 				52CC48CC2B320ABB002071EB /* ContentView.swift */,
+				52C161F92B3B595500BAE25D /* FavorView.swift */,
+				522234AE2B320B3600482C58 /* gameRow.swift */,
+				52C161FB2B3B631500BAE25D /* favorRow.swift */,
+				522234AC2B320B0600482C58 /* GameView.swift */,
+				52C161FD2B3B746A00BAE25D /* WebView.swift */,
 				52CC48CE2B320ABC002071EB /* Assets.xcassets */,
 				52CC48D02B320ABC002071EB /* Preview Content */,
 			);
@@ -143,6 +165,10 @@
 			dependencies = (
 			);
 			name = gameAttack;
+			packageProductDependencies = (
+				52C162012B3B794B00BAE25D /* LoaderUI */,
+				52C162042B3B7CA200BAE25D /* Pow */,
+			);
 			productName = gameAttack;
 			productReference = 52CC48C72B320ABB002071EB /* gameAttack.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +241,11 @@
 				Base,
 			);
 			mainGroup = 52CC48BE2B320ABB002071EB;
+			packageReferences = (
+				52C161FF2B3B78BB00BAE25D /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				52C162002B3B794B00BAE25D /* XCRemoteSwiftPackageReference "LoaderUI" */,
+				52C162032B3B7CA200BAE25D /* XCRemoteSwiftPackageReference "Pow" */,
+			);
 			productRefGroup = 52CC48C82B320ABB002071EB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,7 +288,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523C60192B320B850018D27D /* gamesDataFetcher.swift in Sources */,
+				52C161FE2B3B746A00BAE25D /* WebView.swift in Sources */,
+				52C161FA2B3B595500BAE25D /* FavorView.swift in Sources */,
+				52C161FC2B3B631500BAE25D /* favorRow.swift in Sources */,
 				52CC48CD2B320ABB002071EB /* ContentView.swift in Sources */,
+				522234AD2B320B0600482C58 /* GameView.swift in Sources */,
+				522234AF2B320B3600482C58 /* gameRow.swift in Sources */,
 				52CC48CB2B320ABB002071EB /* gameAttackApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +619,46 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		52C161FF2B3B78BB00BAE25D /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+		52C162002B3B794B00BAE25D /* XCRemoteSwiftPackageReference "LoaderUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/LoaderUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+		52C162032B3B7CA200BAE25D /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		52C162012B3B794B00BAE25D /* LoaderUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52C162002B3B794B00BAE25D /* XCRemoteSwiftPackageReference "LoaderUI" */;
+			productName = LoaderUI;
+		};
+		52C162042B3B7CA200BAE25D /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52C162032B3B7CA200BAE25D /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52CC48BF2B320ABB002071EB /* Project object */;
 }
