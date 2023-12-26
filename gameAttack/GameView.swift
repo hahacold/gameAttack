@@ -34,16 +34,7 @@ struct GameView: View {
                         
                 }
             }
-            .refreshable {
-                do {
-                    try await fetcher.fetchData(term: "swift")
-                    fetcher.items.shuffle()
-                } catch {
-                    print(error)
-                    self.error = error
-                    showError = true
-                }
-            }
+            
             .task {
                 if fetcher.items.isEmpty {
                     do {
@@ -71,6 +62,16 @@ struct GameView: View {
                 else if searchResult.isEmpty{
                     
                     ContentUnavailableView(
+                        "載入中請稍候",
+                        systemImage: "arrow.triangle.2.circlepath.icloud.fill",
+                        description: Text("請稍候")
+                    ).transition(
+                        .movingParts.blinds(slatWidth: 25)
+                      )
+                }
+                else  {
+                    
+                    ContentUnavailableView(
                         "網路有問題",
                         systemImage: "network.slash",
                         description: Text("請檢查網路")
@@ -81,6 +82,15 @@ struct GameView: View {
                 
             }
             
+        }.refreshable {
+            do {
+                try await fetcher.fetchData(term: "swift")
+                fetcher.items.shuffle()
+            } catch {
+                print(error)
+                self.error = error
+                showError = true
+            }
         }.searchable(text: $searchText)
             
     }

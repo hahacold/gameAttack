@@ -27,6 +27,7 @@ struct gameRow: View {
                 .fill(Color.random)
                 .frame(width: 380, height: 330)
                 .opacity(0.5)
+                
             if isAdded {
                 VStack{
                     AsyncImage(url: URL(string: item.thumbnail)){ phase in
@@ -64,7 +65,7 @@ struct gameRow: View {
                         .lineLimit(3)
                         .multilineTextAlignment(.center)
                     
-                }
+                }.padding()
                       .transition(.movingParts.blur)
                   }
             else{
