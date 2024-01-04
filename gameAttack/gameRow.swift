@@ -40,9 +40,11 @@ struct gameRow: View {
                             Color.gray
                             
                         } else{
-                            Image(systemName: "arrow.triangle.2.circlepath")
+                            Image(systemName: "arrow.triangle.2.circlepath.icloud.fill")
+                                
                                 .resizable()
-                                .frame(width: 365,height: 206)
+                                .foregroundStyle(Color.blue)
+                                .frame(width: 206,height: 206)
                                 .scaledToFit()
                             
                             
@@ -54,10 +56,9 @@ struct gameRow: View {
                     //.frame(width: 460*0.4, height: 215*0.4)
                     .clipShape(RoundedRectangle(cornerRadius: 30))
                     //Spacer()
-                    
-                    
                     VStack(alignment: .center) {
                         Text(item.title)
+                            .bold()
                         Text(item.platform)
                         
                     }
@@ -65,7 +66,8 @@ struct gameRow: View {
                         .lineLimit(3)
                         .multilineTextAlignment(.center)
                     
-                }.padding()
+                }
+                .padding()
                     .transition(
                                 .movingParts.boing
                                 .combined(with: .opacity)
@@ -83,14 +85,16 @@ struct gameRow: View {
             
             Button(action: {
                 
-                @State var favorList:[Int] = UserDefaults.standard.object(forKey: "favorList") as? [Int] ?? []
+                var favorList:[Int] = UserDefaults.standard.value(forKey: "favorList") as? [Int] ?? []
                 favorList.append(item.id)
                 //
 //                if let index = animals.firstIndex(of: "chimps") {
 //                    animals.remove(at: index)
 //                }
+                print(item.id)
                 UserDefaults.standard.set(favorList, forKey: "favorList")
-                print(NSHomeDirectory())
+                //print(NSHomeDirectory())
+                //print(UserDefaults.standard.value(forKey: "favorList") )
                 print(item.id)
                 
             }) {

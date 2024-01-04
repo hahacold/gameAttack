@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct gameAttackApp: App {
     @State private var gamesfetcher = GamesDataFetcher()
-    
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -33,9 +33,11 @@ struct favorRow: View {
                                 Color.gray
                                 
                             } else{
-                                Image(systemName: "arrow.triangle.2.circlepath")
+                                Image(systemName: "arrow.triangle.2.circlepath.icloud.fill")
+                                    
                                     .resizable()
-                                    .frame(width: 365,height: 206)
+                                    .foregroundStyle(Color.blue)
+                                    .frame(width: 206,height: 206)
                                     .scaledToFit()
                                 
                                 
@@ -49,6 +51,7 @@ struct favorRow: View {
                         //Spacer()
                         VStack(alignment: .center) {
                             Text(item.title)
+                                .bold()
                             Text(item.platform)
                             
                         }
@@ -56,7 +59,8 @@ struct favorRow: View {
                             .lineLimit(3)
                             .multilineTextAlignment(.center)
                         
-                    }//.background(Color.gray)
+                    }
+                    .padding()//.background(Color.gray)
                     .transition(.movingParts.blur)
                 }
                 else{
@@ -65,14 +69,17 @@ struct favorRow: View {
                 }
                 Button(action: {
                     
-                    @State var favorList:[Int] = UserDefaults.standard.object(forKey: "favorList") as? [Int] ?? []
-                    favorList.append(item.id)
+                     var favorList:[Int] = UserDefaults.standard.value(forKey: "favorList") as? [Int] ?? []
+                    //favorList.append(item.id)
                     //
                     if let index = favorList.firstIndex(of: item.id) {
                         favorList.remove(at: index)
+                        print(item.id, index, favorList)
                     }
+                    
                     UserDefaults.standard.set(favorList, forKey: "favorList")
-                    print(NSHomeDirectory())
+                    print(UserDefaults.standard.value(forKey: "favorList") )
+                    //print(UserDefaults.standard.dictionaryRepresentation())
                     
                 }) {
                     Text("❌")

@@ -8,6 +8,42 @@
 import SwiftUI
 
 import LocalAuthentication
+import TipKit
+struct disfavorTip: Tip {
+    var title: Text {
+        Text("按叉叉解除收藏吧！")
+    }
+    var message: Text? {
+        Text("對這個遊戲沒興趣了，按叉取消收藏")
+    }
+    var image: Image? {
+        Image(systemName: "x.square")
+        
+    }
+}
+struct privacyTip: Tip {
+    @Parameter
+    static var isLoggedIn: Bool = false
+    var title: Text {
+        Text("先解鎖以查看收藏")
+    }
+    var message: Text? {
+        Text("你的收藏隱藏了，保護隱私")
+    }
+    var image: Image? {
+        Image(systemName: "lock.doc.fill")
+        
+    }
+    var rules: [Rule] {
+        [
+            // Define a rule based on the app state.
+            #Rule(Self.$isLoggedIn) {
+                // Set the conditions for when the tip displays.
+                $0 == false
+            }
+        ]
+    }
+}
 struct FavorView: View {
     @Environment(GamesDataFetcher.self) var fetcher
     @State private var isUnlocked = false
@@ -15,8 +51,11 @@ struct FavorView: View {
     @State private var error: Error?
     @State private var searchText = ""
     //@appstorage
-    @State var favorList:[Int] = UserDefaults.standard.object(forKey: "favorList") as? [Int] ?? []
+    var tip1 = disfavorTip()
+    var tip2 = privacyTip()
+    var favorList:[Int] = UserDefaults.standard.value(forKey: "favorList") as? [Int] ?? []
     func authenticate() {
+        isUnlocked = false
         let context = LAContext()
         var error: NSError?
         
@@ -26,9 +65,11 @@ struct FavorView: View {
             let reason = "We need to unlock your data."
             
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-                isUnlocked = true
+                
                 // authentication has now completed
                 if success {
+                    isUnlocked = true
+                    tip2.invalidate(reason: .actionPerformed)
                     // authenticated successfully
                 } else {
                     // there was a problem
@@ -44,7 +85,8 @@ struct FavorView: View {
                 //Text("Unlocked")
                 
                 VStack{
-                    
+                    TipView(tip1)
+                        .tint(.red)
                     //Text("haha")
                     ScrollView(.vertical) {
                         ForEach(fetcher.favoritems) { item in
@@ -61,6 +103,7 @@ struct FavorView: View {
                             self.error = error
                             showError = true
                         }
+                        
                     }
                     .task {
                         if fetcher.favoritems.isEmpty {
@@ -76,14 +119,25 @@ struct FavorView: View {
                             }
                         }
                     }
+                    
                     .alert(error?.localizedDescription ?? "", isPresented: $showError, actions: {
                     })
                 }
             }
             else {
                 Text("Locked")
+                    .bold()
+                    .font(.system(size: 36))
+                    .popoverTip(tip2)
+                    .offset(y:-200)
+                
             }
         }.onAppear(perform: authenticate)
+        
+    }
+    init() {
+        try? Tips.resetDatastore()
+        try? Tips.configure()
     }
 }
 

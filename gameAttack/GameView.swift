@@ -7,12 +7,34 @@
 
 
 import SwiftUI
-
+import TipKit
+struct favorTip: Tip {
+    var title: Text {
+        Text("按星星收藏吧！")
+    }
+    var message: Text? {
+        Text("對這個遊戲有興趣嗎，收藏起來方便之後查看")
+    }
+    var image: Image? {
+        Image(systemName: "star.fill")
+            
+    }
+}
+struct PopoverTip: Tip {
+var title: Text {
+    Text("Add an Effect")
+    .foregroundStyle(.indigo)
+    }
+    var message: Text? {
+    Text("Touch and hold  to add an effect to your favorite image.")
+    }
+}
 struct GameView: View {
     @Environment(GamesDataFetcher.self) var fetcher
     @State private var showError = false
     @State private var error: Error?
     @State private var searchText = ""
+    var tip = favorTip()
     var searchResult: [GamesItem] {
         if searchText.isEmpty {
             fetcher.items
@@ -28,6 +50,8 @@ struct GameView: View {
         
         NavigationStack{
             //Text("haha")
+            TipView(tip)
+                .tint(.yellow)
             ScrollView(.vertical) {
                 ForEach(searchResult) { item in
                     gameRow(item: item)
@@ -94,6 +118,11 @@ struct GameView: View {
         }.searchable(text: $searchText)
             
     }
+    init() {
+        try? Tips.resetDatastore()
+        try? Tips.configure()
+    }
+    
     
 }
 
